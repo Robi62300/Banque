@@ -4,7 +4,7 @@ class Client
     private string $Nom;
     private string $Prenom;
     private string $idClient;
-    private int $dateNaissance;
+    private string $dateNaissance;
     private string $Email;
 
     public function __construct($Nom, $Prenom, $idClient, $dateNaissance, $Email)
@@ -50,11 +50,11 @@ class Client
     }
 
 
-    public function getDateNaissance(): int
+    public function getDateNaissance(): string
     {
         return $this->dateNaissance;
     }
-    public function setDateNaissance(int $dateNaissance): self
+    public function setDateNaissance(string $dateNaissance): self
     {
         $this->dateNaissance = $dateNaissance;
 

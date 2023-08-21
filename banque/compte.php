@@ -1,16 +1,14 @@
 <?php
 class Comptes {
     private int $numeroCompte;
-    private int $codeAgence;
-    private string $idClient;
+    private string $typeCompte;
     private float $solde;
     private bool $decouvertAutorise;
-
-    public function __construct($numeroCompte, $codeAgence, $idClient, $solde, $decouvertAutorise)
+    
+    public function __construct($numeroCompte, $typeCompte, $solde, $decouvertAutorise)
     {
         $this->numeroCompte = $numeroCompte;
-        $this->codeAgence = $codeAgence;
-        $this->idClient = $idClient;
+        $this->typeCompte= $typeCompte;
         $this->solde = $solde;
         $this->decouvertAutorise= $decouvertAutorise;
     }
@@ -23,30 +21,18 @@ class Comptes {
     public function setNumeroCompte(int $numeroCompte): self
     {
         $this->numeroCompte = $numeroCompte;
-
+        
         return $this;
     }
-
-    public function getCodeAgence(): int
+    
+    public function getTypeCompte(): string
     {
-        return $this->codeAgence;
+        return $this->typeCompte;
     }
 
-    public function setCodeAgence(int $codeAgence): self
+    public function setTypeCompte(string $typeCompte): self
     {
-        $this->codeAgence = $codeAgence;
-
-        return $this;
-    }
-
-    public function getIdClient(): string
-    {
-        return $this->idClient;
-    }
-
-    public function setIdClient(string $idClient): self
-    {
-        $this->idClient = $idClient;
+        $this->typeCompte = $typeCompte;
 
         return $this;
     }
