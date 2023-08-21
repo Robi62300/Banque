@@ -11,7 +11,12 @@ switch ($choix_menu) {
         //créer une agence
         break;
     case '2':
-        //créer un client
+        $client= new Client();
+        $client->setIdClient();
+        $client->setNom();
+        $client->setPrenom();
+        $client->setDateNaissance();
+        $client->setEmail();
         break;
     case '3':
         //créer un compte bancaire
@@ -35,6 +40,7 @@ switch ($choix_menu) {
         echo("erreur de saisie dans le menu");
         break;
 }
+
 $nom=new Client("toto", "tata", "uiyefuif", "hfufh", "ygeagyzg");
 $nom->setNom();
 
