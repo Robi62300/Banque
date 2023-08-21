@@ -8,7 +8,10 @@ $chaine_menu ="Bienvenue chez DWWM-02, veuillez choisir votre choix : ";
 $choix_menu= readline($chaine_menu);
 switch ($choix_menu) {
     case '1':
-        //créer une agence
+        $agence = new Agence();
+        $agence ->setCodeAgence();
+        $agence ->setNomAgence();
+        $agence->setAdresse();
         break;
     case '2':
         $client= new Client();
@@ -41,6 +44,8 @@ switch ($choix_menu) {
         break;
 }
 
-$nom=new Client("toto", "tata", "uiyefuif", "hfufh", "ygeagyzg");
-$nom->setNom();
+// $nom=new Client("toto", "tata", "uiyefuif", "hfufh", "ygeagyzg");
+// $nom->setNom();
+// $agence = new agence ();
+// $agence ->set
 

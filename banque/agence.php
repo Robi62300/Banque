@@ -4,12 +4,9 @@ class agence {
     private string $NomAgence;
     private string $adresse;
 
-    public function __construct($CodeAgence, $NomAgence, $adresse)
-{      
-    $this->CodeAgence= $CodeAgence;
-    $this->NomAgence=$NomAgence;
-    $this->adresse=$adresse;
-}
+    public function __construct()
+{}
+
     public function getCodeAgence(): int
     {   
         return $this->CodeAgence;
@@ -18,7 +15,7 @@ class agence {
     
     public function setCodeAgence(): self
     {   
-        $CodeAgence = readline ("Entrer votre code agence svp !! (3 chiffres)");
+        $CodeAgence = readline ("Entrez votre code agence s'il vous plait (3 chiffres) : ");
         $this->CodeAgence = $CodeAgence;
 
         return $this;
@@ -31,8 +28,8 @@ class agence {
     }
 
    
-    public function setNomAgence(string $NomAgence): self
-    {
+    public function setNomAgence(): self
+    {   $NomAgence = readline ("Renseignez le nom de l'agence : ");
         $this->NomAgence = $NomAgence;
 
         return $this;
@@ -45,8 +42,8 @@ class agence {
     }
 
    
-    public function setAdresse(string $adresse): self
-    {
+    public function setAdresse(): self
+    {   $adresse = readline(" Renseignez votre adresse s'il vous plait : ");
         $this->adresse = $adresse;
 
         return $this;
