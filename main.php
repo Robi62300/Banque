@@ -1,4 +1,5 @@
 <?php
+
 include_once("./banque/agence.php");
 include_once("./banque/client.php");
 include_once("./banque/compte.php");
@@ -39,5 +40,3 @@ switch ($choix_menu) {
         echo("erreur de saisie dans le menu");
         break;
 }
-/*$nom=new Client("toto", "tata", "uiyefuif", "hfufh", "ygeagyzg");
-$nom->setNom();*/

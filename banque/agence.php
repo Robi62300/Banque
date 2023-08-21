@@ -11,13 +11,14 @@ class agence {
     $this->adresse=$adresse;
 }
     public function getCodeAgence(): int
-    {
+    {   
         return $this->CodeAgence;
     }
 
     
-    public function setCodeAgence(int $CodeAgence): self
-    {
+    public function setCodeAgence(): self
+    {   
+        $CodeAgence = readline ("Entrer votre code agence svp !! (3 chiffres)");
         $this->CodeAgence = $CodeAgence;
 
         return $this;
