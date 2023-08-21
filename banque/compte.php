@@ -5,21 +5,16 @@ class Comptes {
     private float $solde;
     private bool $decouvertAutorise;
     
-    public function __construct($numeroCompte, $typeCompte, $solde, $decouvertAutorise)
-    {
-        $this->numeroCompte = $numeroCompte;
-        $this->typeCompte= $typeCompte;
-        $this->solde = $solde;
-        $this->decouvertAutorise= $decouvertAutorise;
-    }
+    public function __construct()
+    {}
     
     public function getNumeroCompte(): int
     {
         return $this->numeroCompte;
     }
 
-    public function setNumeroCompte(int $numeroCompte): self
-    {
+    public function setNumeroCompte(): self
+    {   $numeroCompte = readline(" Renseignez votre numéro de compte s'il vous plait : ");
         $this->numeroCompte = $numeroCompte;
         
         return $this;
@@ -30,8 +25,8 @@ class Comptes {
         return $this->typeCompte;
     }
 
-    public function setTypeCompte(string $typeCompte): self
-    {
+    public function setTypeCompte(): self
+    {   $typeCompte = readline(" Renseignez votre type de compte s'il vous plait : ");
         $this->typeCompte = $typeCompte;
 
         return $this;
@@ -42,8 +37,8 @@ class Comptes {
         return $this->solde;
     }
 
-    public function setSolde(float $solde): self
-    {
+    public function setSolde(): self
+    {   $solde = readline(" Renseignez votre solde de compte s'il vous plait : ");
         $this->solde = $solde;
 
         return $this;
@@ -54,8 +49,8 @@ class Comptes {
         return $this->decouvertAutorise;
     }
 
-    public function setDecouvertAutorise(bool $decouvertAutorise): self
-    {
+    public function setDecouvertAutorise(): self
+    {   $decouvertAutorise = readline(" Renseignez votre decouvert de compte s'il vous plait : ");
         $this->decouvertAutorise = $decouvertAutorise;
 
         return $this;

@@ -22,7 +22,12 @@ switch ($choix_menu) {
         $client->setEmail();
         break;
     case '3':
-        //créer un compte bancaire
+       $compte = new Comptes();
+       $compte ->setNumeroCompte();
+       $compte ->setTypeCompte();
+       $compte ->setSolde();
+       $compte ->setDecouvertAutorise();
+
         break;
     case '4':
         // recherche de compte
