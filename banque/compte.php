@@ -14,7 +14,7 @@ class Comptes {
     }
 
     public function setNumeroCompte(): self
-    {   $numeroCompte = readline(" Renseignez votre numéro de compte s'il vous plait : ");
+    {   $numeroCompte = readline(" Renseignez votre numéro de compte s'il vous plait (11 chiffres) : ");
         $this->numeroCompte = $numeroCompte;
         
         return $this;
