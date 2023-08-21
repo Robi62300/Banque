@@ -20,8 +20,8 @@ class Client
     {
         return $this->Nom;
     }
-    public function setNom(string $Nom): self
-    {
+    public function setNom(): self
+    {   $Nom = readline("veuillez entrer le nom du client : ");
         $this->Nom = $Nom;
         return $this;
     }

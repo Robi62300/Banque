@@ -1,9 +1,10 @@
 <?php
-include_once("./banque./agence.php");
-include_once("./banque./client.php");
-include_once("./banque./compte.php");
+include_once("./banque/agence.php");
+include_once("./banque/client.php");
+include_once("./banque/compte.php");
 
-$chaine_menu ="";
+$chaine_menu ="Bienvenue chez DWWM-02, veuillez choisir votre choix : ";
+$choix_menu= readline($chaine_menu);
 switch ($choix_menu) {
     case '1':
         //créer une agence
@@ -30,6 +31,8 @@ switch ($choix_menu) {
         //quitter le programme
         break;
     default:
-        
+        echo("erreur de saisie dans le menu");
         break;
 }
+$nom=new Client("toto", "tata", "uiyefuif", "hfufh", "ygeagyzg");
+$nom->setNom();
