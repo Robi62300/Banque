@@ -7,14 +7,9 @@ class Client
     private string $dateNaissance;
     private string $Email;
 
-    public function __construct($Nom, $Prenom, $idClient, $dateNaissance, $Email)
-    {
-        $this->Nom = $Nom;
-        $this->Prenom = $Prenom;
-        $this->idClient = $idClient;
-        $this->dateNaissance = $dateNaissance;
-        $this->Email = $Email;
-    }
+    public function __construct()
+    {}
+    
 
     public function getNom(): string
     {
@@ -30,8 +25,8 @@ class Client
     {
         return $this->Prenom;
     }
-    public function setPrenom(string $Prenom): self
-    {
+    public function setPrenom(): self
+    {   $Prenom = readline("veuillez entrer le prénom du client : ");
         $this->Prenom = $Prenom;
 
         return $this;
@@ -42,8 +37,8 @@ class Client
     {
         return $this->idClient;
     }
-    public function setIdClient(string $idClient): self
-    {
+    public function setIdClient(): self
+    {$idClient = readline("veuillez entrer l'id du client : ");
         $this->idClient = $idClient;
 
         return $this;
@@ -54,8 +49,8 @@ class Client
     {
         return $this->dateNaissance;
     }
-    public function setDateNaissance(string $dateNaissance): self
-    {
+    public function setDateNaissance(): self
+    {$dateNaissance = readline("veuillez entrer la date de naissance du client : ");
         $this->dateNaissance = $dateNaissance;
 
         return $this;
@@ -66,8 +61,8 @@ class Client
     {
         return $this->Email;
     }
-    public function setEmail(string $Email): self
-    {
+    public function setEmail(): self
+    {$Email = readline("veuillez entrer l'email du client : ");
         $this->Email = $Email;
 
         return $this;
