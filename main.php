@@ -1,6 +1,5 @@
 <?php
-<<<<<<< HEAD
-=======
+
 include_once("./banque/agence.php");
 include_once("./banque/client.php");
 include_once("./banque/compte.php");
@@ -38,4 +37,4 @@ switch ($choix_menu) {
 }
 $nom=new Client("toto", "tata", "uiyefuif", "hfufh", "ygeagyzg");
 $nom->setNom();
->>>>>>> 81236ec107ec9267674dc20b8326c77f6620ff29
+
