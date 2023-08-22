@@ -54,3 +54,7 @@ switch ($choix_menu) {
 // $agence = new agence ();
 // $agence ->set
 
+// substr(str_shuffle($x= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),0, 2); donne 2 majuscules aléatoires
+//rand(10000000000, 99999999999); génère un nombre de 11 chiffres
+//rand(100000, 999999); 6 chiffres
+//rand(100, 999); 3 chiffres
