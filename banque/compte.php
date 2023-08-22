@@ -14,7 +14,7 @@ class Comptes {
     }
 
     public function setNumeroCompte(): self
-    {   $numeroCompte = readline(" Renseignez votre numéro de compte s'il vous plait (11 chiffres) : ");
+    {   $numeroCompte = rand (10000000000, 99999999999);
         $this->numeroCompte = $numeroCompte;
         
         return $this;

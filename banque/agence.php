@@ -15,7 +15,7 @@ class agence {
     
     public function setCodeAgence(): self
     {   
-        $CodeAgence = readline ("Entrez votre code agence s'il vous plait (3 chiffres) : ");
+        $CodeAgence = rand (100, 999);
         $this->CodeAgence = $CodeAgence;
 
         return $this;
