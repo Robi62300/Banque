@@ -3,15 +3,19 @@
 include_once("./banque/agence.php");
 include_once("./banque/client.php");
 include_once("./banque/compte.php");
+include_once("./lib/function.php");
 
 $chaine_menu ="Bienvenue chez DWWM-02, veuillez choisir votre choix : ";
 $choix_menu= readline($chaine_menu);
 switch ($choix_menu) {
-    case '1':
+    case '1': 
         $agence = new Agence();
         $agence ->setCodeAgence();
         $agence ->setNomAgence();
         $agence->setAdresse();
+        $fileName = "./sauv/agences/agences.csv";
+        var_dump($agence);
+        arrayToCsv($agence, $fileName, ",");
         break;
     case '2':
         $client= new Client();
@@ -57,4 +61,4 @@ switch ($choix_menu) {
 // substr(str_shuffle($x= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),0, 2); donne 2 majuscules aléatoires
 //rand(10000000000, 99999999999); génère un nombre de 11 chiffres
 //rand(100000, 999999); 6 chiffres
-//rand(100, 999); 3 chiffres
+//rand(100, 999); 3 chiffres 
