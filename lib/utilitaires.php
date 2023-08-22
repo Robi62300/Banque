@@ -23,7 +23,7 @@ function change_color($color)
     ];
     $couleur = "\033[0m";
     foreach ($foreground_colors as $cle => $en_cours) {
-        if (strtolower($color) == $cle) {
+        if (strtolower($color) == $cle) { // la fonction strtolower met la chaine de caractères en miniscules
             $couleur = "\033[" . $en_cours . "m";
             break;
         }

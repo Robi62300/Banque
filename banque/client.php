@@ -38,7 +38,7 @@ class Client
         return $this->idClient;
     }
     public function setIdClient(): self
-    {$idClient = readline("veuillez entrer l'id du client : ");
+    {$idClient = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'),0, 2) . rand(100000, 999999);
         $this->idClient = $idClient;
 
         return $this;
