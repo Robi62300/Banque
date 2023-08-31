@@ -25,11 +25,12 @@ switch ($choix_menu) {
         break;
     case '2':
         $donnees = [];
-        $header=['id','nom', 'prenom', 'date', 'email'];
+        $header=['id', 'idAgence','nom', 'prenom', 'date', 'email'];
         $fileName="./sauv/clients/clients.csv";
         csv_to_array($donnees, $fileName, ',');
         $client= new Client();
         $client->setIdClient();
+        $client->setId_agence();
         $client->setNom();
         $client->setPrenom();
         $client->setDateNaissance();
@@ -44,7 +45,7 @@ switch ($choix_menu) {
         csv_to_array($donnees, $fileName, ',');
         $compte = new Comptes();
         $compte ->setNumeroCompte();
-        $compte ->setIdClient();
+        $compte ->setId_client();
         $compte ->setTypeCompte();
         $compte ->setSolde();
         array_push($donnees, $compte ->setDecouvertAutorise());
@@ -76,26 +77,17 @@ switch ($choix_menu) {
     end:
         if($choix ==="o"){
         $choix_menu= readline($chaine_menu);
-        }    
-        $choix_menu =10;
+        }else{ $choix_menu =10;}    
+       
 }while ($choix_menu<8);
-// $nom=new Client("toto", "tata", "uiyefuif", "hfufh", "ygeagyzg");
-// $nom->setNom();
-// $agence = new agence ();
-// $agence ->set
 
-//substr(str_shuffle($x= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),0, 2); //donne 2 majuscules aléatoires
-//rand(10000000000, 99999999999); génère un nombre de 11 chiffres
-//rand(100000, 999999); 6 chiffres
-//rand(100, 999); 3 chiffres 
-
-//masque pour la date de naissance
+//*masque pour la date de naissance
 /*
-$valid_format_datenaiss = "#(\d{2})/(\d{2})/(\d{4})#";
-if(!preg_match($valide_format_datenaiss, chaine_date)) //ici chaine_date est la chaine de caractères qu'on rentre
-{
-    echo renter une date valide
-}
+*$valid_format_datenaiss = "#(\d{2})/(\d{2})/(\d{4})#";
+*if(!preg_match($valide_format_datenaiss, chaine_date)) //ici chaine_date est la chaine de caractères qu'on rentre
+*{
+*    echo renter une date valide
+*}
 */
 
 //*masque pour un e-mail
@@ -112,10 +104,11 @@ if(!preg_match($valide_format_datenaiss, chaine_date)) //ici chaine_date est la 
 //*
  /* liste des setteurs à checker 
 *setCodeAgence() : numéro d'agence différent
-*setIdClient() : idclient différent
+*setIdClient() : idclient différent 
+*setId_agence() : idAgence déjà existant (pour l'agence)
 *setDateNaissance() : juste le format
 *setEmail() : email different
 *setNumeroCompte() : numero différent
-*setIdClient() : idclient deja existant
-*setTypeCompte() : compte courant, livret A ou LEP, 1 de chaque au MAXIMUM par client, limité à 3
+*setId_client() : idClient deja existant (pour le compte)
+*setTypeCompte() : compte courant, livret A ou LEP, 1 de chaque au MAXIMUM par client, limité à 3 comptes par client
 */

@@ -2,6 +2,7 @@
 class Client
 {
     private string $idClient;
+    private int $id_agence;
     private string $Nom;
     private string $Prenom;
     private string $dateNaissance;
@@ -17,6 +18,18 @@ class Client
     public function setIdClient(): self
     {   $idClient = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'),0, 2) . rand(100000, 999999);
         $this->idClient = $idClient;
+
+        return $this;
+    }
+
+    public function getId_agence(): int
+    {
+        return $this->id_agence;
+    }
+
+    public function setId_agence(): self
+    {   $id_agence = readline("veuillez entrer l'iD de l'agence : ");
+        $this->id_agence = $id_agence;
 
         return $this;
     }
@@ -64,4 +77,7 @@ class Client
 
         return $this;
     }
+
+   
+    
 }

@@ -1,7 +1,7 @@
 <?php
 class Comptes {
     private int $numeroCompte;
-    private string $idClient;
+    private string $id_client;
     private string $typeCompte;
     private float $solde;
     private bool $decouvertAutorise;
@@ -21,15 +21,15 @@ class Comptes {
         return $this;
     }
      
-    public function getIdClient(): string
+    public function getId_client(): string
     {
-        return $this->idClient;
+        return $this->id_client;
     }
 
     
-    public function setIdClient(): self
-    {    $idClient = readline(" Renseignez l'iD du client s'il vous plait : ");
-        $this->idClient = $idClient;
+    public function setId_client(): self
+    {    $id_client = readline(" Renseignez l'iD du client s'il vous plait : ");
+        $this->id_client = $id_client;
 
         return $this;
     }
