@@ -4,40 +4,52 @@ include_once("./banque/agence.php");
 include_once("./banque/client.php");
 include_once("./banque/compte.php");
 include_once("./lib/function.php");
-
-$chaine_menu ="Bienvenue chez DWWM-02, veuillez choisir votre choix : ";
+$choix= "";
+$chaine_menu ="Bienvenue chez DWWM-02, veuillez choisir votre choix : \n 1 : créer une agence 
+ 2 : créer un client \n 3 : creer un compte \n 4 : recherche de compte 
+ 5 : recherche de client 6 : afficher la liste de comptes d'un client \n 7 : imprimer les infos client
+ 8 : quitter le programme";
 $choix_menu= readline($chaine_menu);
 do {
 switch ($choix_menu) {
     case '1': 
         $donnees = [];
+        $fileName="./sauv/agences/agences.csv";
+        $header=['code', 'nom', 'adresse'];
         $agence = new Agence();
         $agence ->setCodeAgence();
         $agence ->setNomAgence();
+        csv_to_array($donnees, $fileName, ',');
         array_push($donnees, $agence->setAdresse());
-        $fileName = "./sauv/agences/agences.csv";
-        var_dump($agence);
-        arrayToCsv($agence, $fileName, ",");
+        print_r($donnees);
+        arrayToCsv($agence, $fileName, ",", $header);
         break;
     case '2':
         $donnees = [];
+        $header=['id','nom', 'prenom', 'date', 'email'];
+        $fileName="./sauv/clients/clients.csv";
         $client= new Client();
         $client->setIdClient();
         $client->setNom();
         $client->setPrenom();
         $client->setDateNaissance();
+        csv_to_array($donnees, $fileName, ',');
         array_push($donnees, $client->setEmail());
-        arrayToCsv($donnees, "./sauv/clients/clients.csv", ",");
         print_r($donnees);
+        arrayToCsv($donnees,$fileName,",",$header);
         break;
     case '3':
-       $donnees = [];
-       $compte = new Comptes();
-       $compte ->setNumeroCompte();
-       $compte ->setTypeCompte();
-       $compte ->setSolde();
-       array_push($donnees, $compte ->setDecouvertAutorise());
-       arrayToCsv($donnees, "./sauv/comptes/comptes.csv", ",");
+        $donnees = [];
+        $fileName="./sauv/comptes/comptes.csv";
+        $header=['numéro', 'type', 'solde', 'découvert'];
+        $compte = new Comptes();
+        $compte ->setNumeroCompte();
+        $compte ->setTypeCompte();
+        $compte ->setSolde();
+        csv_to_array($donnees, $fileName, ',');
+        array_push($donnees, $compte ->setDecouvertAutorise());
+        print_r($donnees);
+        arrayToCsv($donnees,$fileName,",",$header);
         break;
     case '4':
         // recherche de compte
@@ -52,15 +64,21 @@ switch ($choix_menu) {
         //imprimer les infos clients
         break;
     case '8':
-        //quitter le programme
+        $choix="n";//quitter le programme
         $choix_menu =10;
+        goto end;
         break;
     default:
         echo("erreur de saisie dans le menu");
-        $choix_menu=10;
         break;
 }
-}while ($choix_menu<10);
+    $choix = readline("voulez-vous continuer ? (o|n)");
+    end:
+        if($choix ==="o"){
+        $choix_menu= readline($chaine_menu);
+        }    
+        $choix_menu =10;
+}while ($choix_menu<8);
 // $nom=new Client("toto", "tata", "uiyefuif", "hfufh", "ygeagyzg");
 // $nom->setNom();
 // $agence = new agence ();

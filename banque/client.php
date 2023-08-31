@@ -1,9 +1,9 @@
 <?php
 class Client
 {
+    private string $idClient;
     private string $Nom;
     private string $Prenom;
-    private string $idClient;
     private string $dateNaissance;
     private string $Email;
 
