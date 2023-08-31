@@ -1,5 +1,4 @@
 <?php
-
 include_once("./banque/agence.php");
 include_once("./banque/client.php");
 include_once("./banque/compte.php");
@@ -16,10 +15,10 @@ switch ($choix_menu) {
         $donnees = [];
         $fileName="./sauv/agences/agences.csv";
         $header=['code', 'nom', 'adresse'];
+        csv_to_array($donnees, $fileName, ',');
         $agence = new Agence();
         $agence ->setCodeAgence();
         $agence ->setNomAgence();
-        csv_to_array($donnees, $fileName, ',');
         array_push($donnees, $agence->setAdresse());
         print_r($donnees);
         arrayToCsv($agence, $fileName, ",", $header);
@@ -28,12 +27,12 @@ switch ($choix_menu) {
         $donnees = [];
         $header=['id','nom', 'prenom', 'date', 'email'];
         $fileName="./sauv/clients/clients.csv";
+        csv_to_array($donnees, $fileName, ',');
         $client= new Client();
         $client->setIdClient();
         $client->setNom();
         $client->setPrenom();
         $client->setDateNaissance();
-        csv_to_array($donnees, $fileName, ',');
         array_push($donnees, $client->setEmail());
         print_r($donnees);
         arrayToCsv($donnees,$fileName,",",$header);
@@ -41,12 +40,13 @@ switch ($choix_menu) {
     case '3':
         $donnees = [];
         $fileName="./sauv/comptes/comptes.csv";
-        $header=['numéro', 'type', 'solde', 'découvert'];
+        $header=['numéro','idClient','type', 'solde', 'découvert'];
+        csv_to_array($donnees, $fileName, ',');
         $compte = new Comptes();
         $compte ->setNumeroCompte();
+        $compte ->setIdClient();
         $compte ->setTypeCompte();
         $compte ->setSolde();
-        csv_to_array($donnees, $fileName, ',');
         array_push($donnees, $compte ->setDecouvertAutorise());
         print_r($donnees);
         arrayToCsv($donnees,$fileName,",",$header);
@@ -98,13 +98,24 @@ if(!preg_match($valide_format_datenaiss, chaine_date)) //ici chaine_date est la 
 }
 */
 
-//masque pour un e-mail
+//*masque pour un e-mail
 /*
- $masque = "/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4}$/";
+ *$masque = "/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4}$/";
+*
+*if(preg_match($masque, $email)) 
+ *{
+ *       mail valide
+ *}
+ *mail non valide
+*/
 
-if(preg_match($masque, $email)) 
- {
-        mail valide
- }
- mail non valide
+//*
+ /* liste des setteurs à checker 
+*setCodeAgence() : numéro d'agence différent
+*setIdClient() : idclient différent
+*setDateNaissance() : juste le format
+*setEmail() : email different
+*setNumeroCompte() : numero différent
+*setIdClient() : idclient deja existant
+*setTypeCompte() : compte courant, livret A ou LEP, 1 de chaque au MAXIMUM par client, limité à 3
 */

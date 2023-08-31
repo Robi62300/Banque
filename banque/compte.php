@@ -1,6 +1,7 @@
 <?php
 class Comptes {
     private int $numeroCompte;
+    private string $idClient;
     private string $typeCompte;
     private float $solde;
     private bool $decouvertAutorise;
@@ -17,6 +18,19 @@ class Comptes {
     {   $numeroCompte = rand (10000000000, 99999999999);
         $this->numeroCompte = $numeroCompte;
         
+        return $this;
+    }
+     
+    public function getIdClient(): string
+    {
+        return $this->idClient;
+    }
+
+    
+    public function setIdClient(): self
+    {    $idClient = readline(" Renseignez l'iD du client s'il vous plait : ");
+        $this->idClient = $idClient;
+
         return $this;
     }
     
@@ -55,4 +69,6 @@ class Comptes {
 
         return $this;
     }
+
+   
 }

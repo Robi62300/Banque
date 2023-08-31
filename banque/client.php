@@ -9,7 +9,17 @@ class Client
 
     public function __construct()
     {}
-    
+
+    public function getIdClient(): string
+    {
+        return $this->idClient;
+    }
+    public function setIdClient(): self
+    {   $idClient = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'),0, 2) . rand(100000, 999999);
+        $this->idClient = $idClient;
+
+        return $this;
+    }
 
     public function getNom(): string
     {
@@ -31,19 +41,6 @@ class Client
 
         return $this;
     }
-
- 
-    public function getIdClient(): string
-    {
-        return $this->idClient;
-    }
-    public function setIdClient(): self
-    {$idClient = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'),0, 2) . rand(100000, 999999);
-        $this->idClient = $idClient;
-
-        return $this;
-    }
-
 
     public function getDateNaissance(): string
     {
