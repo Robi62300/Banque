@@ -17,11 +17,11 @@ switch ($choix_menu) {
         $header=['code', 'nom', 'adresse'];
         csv_to_array($donnees, $fileName, ',');
         $agence = new Agence();
-        $agence ->setCodeAgence();
+        $agence ->setCodeAgence($donnees);
         $agence ->setNomAgence();
         array_push($donnees, $agence->setAdresse());
         print_r($donnees);
-        arrayToCsv($agence, $fileName, ",", $header);
+        arrayToCsv($donnees, $fileName, ",", $header);
         break;
     case '2':
         $donnees = [];
@@ -29,12 +29,12 @@ switch ($choix_menu) {
         $fileName="./sauv/clients/clients.csv";
         csv_to_array($donnees, $fileName, ',');
         $client= new Client();
-        $client->setIdClient();
+        $client->setIdClient($donnees);
         $client->setId_agence();
         $client->setNom();
         $client->setPrenom();
         $client->setDateNaissance();
-        array_push($donnees, $client->setEmail());
+        array_push($donnees, $client->setEmail($donnees));
         print_r($donnees);
         arrayToCsv($donnees,$fileName,",",$header);
         break;
@@ -44,7 +44,7 @@ switch ($choix_menu) {
         $header=['numéro','idClient','type', 'solde', 'découvert'];
         csv_to_array($donnees, $fileName, ',');
         $compte = new Comptes();
-        $compte ->setNumeroCompte();
+        $compte ->setNumeroCompte($donnees);
         $compte ->setId_client();
         $compte ->setTypeCompte();
         $compte ->setSolde();
@@ -103,11 +103,11 @@ switch ($choix_menu) {
 
 //*
  /* liste des setteurs à checker 
-*setCodeAgence() : numéro d'agence différent
-*setIdClient() : idclient différent 
+*setCodeAgence() : numéro d'agence différent : fait
+*setIdClient() : idclient différent : fait
 *setId_agence() : idAgence déjà existant (pour l'agence)
-*setDateNaissance() : juste le format
-*setEmail() : email different
+*setDateNaissance() : juste le format : fait
+*setEmail() : email different : fait
 *setNumeroCompte() : numero différent
 *setId_client() : idClient deja existant (pour le compte)
 *setTypeCompte() : compte courant, livret A ou LEP, 1 de chaque au MAXIMUM par client, limité à 3 comptes par client

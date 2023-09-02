@@ -14,8 +14,14 @@ class Comptes {
         return $this->numeroCompte;
     }
 
-    public function setNumeroCompte(): self
+    public function setNumeroCompte($donnees): self
     {   $numeroCompte = rand (10000000000, 99999999999);
+        for($i=0; $i< count($donnees); $i++){
+            if($donnees[$i]['numéro']===$numeroCompte){
+                $numeroCompte = rand (10000000000, 99999999999);
+                $i=0;
+            }
+        }
         $this->numeroCompte = $numeroCompte;
         
         return $this;

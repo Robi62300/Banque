@@ -13,9 +13,15 @@ class agence {
     }
 
     
-    public function setCodeAgence(): self
+    public function setCodeAgence($donnees): self
     {   
         $CodeAgence = rand (100, 999);
+        for($i=0; $i< count($donnees); $i++){
+            if($donnees[$i]['code']===$CodeAgence){
+                $CodeAgence = rand (100, 999);
+                $i=0;
+            }
+        }
         $this->CodeAgence = $CodeAgence;
 
         return $this;
@@ -43,7 +49,7 @@ class agence {
 
    
     public function setAdresse(): self
-    {   $adresse = readline(" Renseignez votre adresse s'il vous plait : ");
+    {   $adresse = readline("Renseignez l'adresse de l'agence : ");
         $this->adresse = $adresse;
 
         return $this;
