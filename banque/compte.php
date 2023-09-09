@@ -1,4 +1,5 @@
 <?php
+include_once("./lib/function.php");
 class Comptes {
     private int $numeroCompte;
     private string $id_client;
@@ -6,8 +7,7 @@ class Comptes {
     private float $solde;
     private bool $decouvertAutorise;
     
-    public function __construct()
-    {}
+    public function __construct() {}
     
     public function getNumeroCompte(): int
     {
@@ -23,7 +23,6 @@ class Comptes {
             }
         }
         $this->numeroCompte = $numeroCompte;
-        
         return $this;
     }
      
@@ -34,9 +33,26 @@ class Comptes {
 
     
     public function setId_client(): self
-    {    $id_client = readline(" Renseignez l'iD du client s'il vous plait : ");
-        $this->id_client = $id_client;
-
+    {   $id_client = readline(" Renseignez l'iD du client s'il vous plait : ");
+        debut_i:
+        $donnees_client =[];
+        $trouve = FALSE;
+        csv_to_array($donnees_client, "./sauv/clients/clients.csv", ',');
+        for($i=0; $i< count($donnees_client); $i++){
+            if($donnees_client[$i]['id']===$id_client){
+                $trouve= TRUE;
+                $this->id_client = $id_client;
+            }    
+        }
+        if (!$trouve){
+            $id_client =[];
+            for($i=0; $i< count($donnees_client); $i++){
+                $id_client[$i] = $donnees_client[$i]['id'];
+            }
+            echo" Client non trouvée dans les données. Veuillez choisir parmi la liste donnée : ";
+            $id_client= readline(implode("\n", $id_client));
+            goto debut_i;
+        }
         return $this;
     }
     
@@ -45,10 +61,9 @@ class Comptes {
         return $this->typeCompte;
     }
 
-    public function setTypeCompte(): self
-    {   $typeCompte = readline(" Renseignez votre type de compte s'il vous plait : ");
+    public function setTypeCompte($typeCompte): self
+    {   
         $this->typeCompte = $typeCompte;
-
         return $this;
     }
 
@@ -70,11 +85,8 @@ class Comptes {
     }
 
     public function setDecouvertAutorise(): self
-    {   $decouvertAutorise = readline(" Renseignez votre decouvert de compte s'il vous plait : ");
+    {   $decouvertAutorise = readline(" Renseignez si votre compte peut etre à découvert : ");
         $this->decouvertAutorise = $decouvertAutorise;
-
         return $this;
-    }
-
-   
+    } 
 }

@@ -23,7 +23,6 @@ class agence {
             }
         }
         $this->CodeAgence = $CodeAgence;
-
         return $this;
     }
 
@@ -37,7 +36,6 @@ class agence {
     public function setNomAgence(): self
     {   $NomAgence = readline ("Renseignez le nom de l'agence : ");
         $this->NomAgence = $NomAgence;
-
         return $this;
     }
 
@@ -51,7 +49,6 @@ class agence {
     public function setAdresse(): self
     {   $adresse = readline("Renseignez l'adresse de l'agence : ");
         $this->adresse = $adresse;
-
         return $this;
     }
 }

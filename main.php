@@ -3,7 +3,9 @@ include_once("./banque/agence.php");
 include_once("./banque/client.php");
 include_once("./banque/compte.php");
 include_once("./lib/function.php");
-$choix= "";
+include_once("./comptes/choix_livret.php");
+$breakpoint ="";
+$choix_continue= "";
 $chaine_menu ="Bienvenue chez DWWM-02, veuillez choisir votre choix : \n 1 : créer une agence 
  2 : créer un client \n 3 : creer un compte \n 4 : recherche de compte 
  5 : recherche de client 6 : afficher la liste de comptes d'un client \n 7 : imprimer les infos client
@@ -46,17 +48,33 @@ switch ($choix_menu) {
         $compte = new Comptes();
         $compte ->setNumeroCompte($donnees);
         $compte ->setId_client();
-        $compte ->setTypeCompte();
+        $breakpoint= choix_livret($donnees, $compte);
+        if($breakpoint ==="EXIT"){goto sortie;}
         $compte ->setSolde();
         array_push($donnees, $compte ->setDecouvertAutorise());
         print_r($donnees);
         arrayToCsv($donnees,$fileName,",",$header);
         break;
     case '4':
-        // recherche de compte
+        //recherche de compte
+        $donnees = [];
+        $donnees_compte = [];
+        $fileName="./sauv/comptes/comptes.csv";
+        csv_to_array($donnees, $fileName, ',');
+        $trouve = FALSE;
+        $numero_compte = readline("Veuillez entrer le numéro de compte souhaité : ");
+        for($i=0; $i< count($donnees); $i++){
+            if($donnees[$i]['numéro']===$numero_compte){
+                $donnees_compte = $donnees[$i];
+                $trouve = TRUE;
+            }
+        }
+        if($trouve){ echo "compte trouvé : voici ses données" . $donnees_compte ;
+        }
         break;
     case '5':
         // recherche de client
+        recherche_clients();
         break;
     case '6':
         //afficher la liste des comptes d'un client
@@ -65,15 +83,16 @@ switch ($choix_menu) {
         //imprimer les infos clients
         break;
     case '8':
-        $choix="n";//quitter le programme
+        $choix_continue="n";//quitter le programme
         $choix_menu =10;
         goto end;
         break;
     default:
         echo("erreur de saisie dans le menu");
         break;
-}
-    $choix = readline("voulez-vous continuer ? (o|n)");
+}   
+    sortie:
+    $choix_continue = readline("voulez-vous continuer ? (o|n)");
     end:
         if($choix ==="o"){
         $choix_menu= readline($chaine_menu);
@@ -105,10 +124,10 @@ switch ($choix_menu) {
  /* liste des setteurs à checker 
 *setCodeAgence() : numéro d'agence différent : fait
 *setIdClient() : idclient différent : fait
-*setId_agence() : idAgence déjà existant (pour l'agence)
+*setId_agence() : idAgence déjà existant (pour l'agence) : fait
 *setDateNaissance() : juste le format : fait
 *setEmail() : email different : fait
-*setNumeroCompte() : numero différent
-*setId_client() : idClient deja existant (pour le compte)
-*setTypeCompte() : compte courant, livret A ou LEP, 1 de chaque au MAXIMUM par client, limité à 3 comptes par client
+*setNumeroCompte() : numero différent :  fait
+*setId_client() : idClient deja existant (pour le compte) : fait
+*setTypeCompte() : compte courant, livret A ou LEP, 1 de chaque au MAXIMUM par client, limité à 3 comptes par client : fait
 */
